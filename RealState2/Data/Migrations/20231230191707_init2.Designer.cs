@@ -11,7 +11,7 @@ using RealState2.Data;
 
 namespace RealState2.Data.Migrations
 {
-    [DbContext(typeof(ApplicationDbContext))]
+    [DbContext(typeof(RealEstateDbContext))]
     [Migration("20231230191707_init2")]
     partial class init2
     {

@@ -1,22 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 
 namespace RealEstate2.Models
 {
-    public class Vendor
+    public class Vendor : IdentityUser
     {
         [Key]
         public int _Id { get; set; }
         [Required]
         public string Firstname { get; set; }
         [Required]
-        public string lastname { get; set; }
+        public string LastName { get; set; }
+    
         [Required]
-        public string Email { get; set; }
+        public string Phone { get; set; }
         [Required]
-        public int Phone { get; set; }
-        [Required]
-        public string Password { get; set; }
-        public List<facility> RealEstate { get; set; } = new List<facility>();
+       
+        public List<facility> Facilities { get; set; } = new List<facility>();
     }
 }
