@@ -9,6 +9,10 @@
       "PackagePath": "staticwebassets\\css\\site.css"
     },
     {
+      "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\css\\styles.css",
+      "PackagePath": "staticwebassets\\css\\styles.css"
+    },
+    {
       "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\favicon.ico",
       "PackagePath": "staticwebassets\\favicon.ico"
     },
@@ -243,6 +247,14 @@
     {
       "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\lib\\jquery\\dist\\jquery.min.map",
       "PackagePath": "staticwebassets\\lib\\jquery\\dist\\jquery.min.map"
+    },
+    {
+      "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\pictures\\pic1.jpg",
+      "PackagePath": "staticwebassets\\pictures\\pic1.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\pictures\\pic2.jpg",
+      "PackagePath": "staticwebassets\\pictures\\pic2.jpg"
     },
     {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RealEstate2.Microsoft.AspNetCore.StaticWebAssets.props",

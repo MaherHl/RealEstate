@@ -871,6 +871,21 @@
           "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll": {}
         }
       },
+      "Microsoft.AspNetCore.SpaServices.Extensions/6.0.1": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Physical": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.AspNetCore.SpaServices.Extensions.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.AspNetCore.SpaServices.Extensions.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
         "type": "package",
         "compile": {
@@ -1809,6 +1824,43 @@
         },
         "buildMultiTargeting": {
           "buildMultiTargeting/_._": {}
+        }
+      },
+      "Microsoft.Extensions.FileProviders.Physical/6.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.Extensions.FileProviders.Abstractions": "6.0.0",
+          "Microsoft.Extensions.FileSystemGlobbing": "6.0.0",
+          "Microsoft.Extensions.Primitives": "6.0.0"
+        },
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.FileProviders.Physical.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.FileProviders.Physical.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
+        }
+      },
+      "Microsoft.Extensions.FileSystemGlobbing/6.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/Microsoft.Extensions.FileSystemGlobbing.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/Microsoft.Extensions.FileSystemGlobbing.dll": {
+            "related": ".xml"
+          }
+        },
+        "build": {
+          "buildTransitive/netcoreapp3.1/_._": {}
         }
       },
       "Microsoft.Extensions.Identity.Core/8.0.0": {
@@ -3222,6 +3274,30 @@
             "rid": "win"
           }
         }
+      },
+      "Tailwind.Extensions.AspNetCore/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.SpaServices.Extensions": "6.0.1"
+        },
+        "compile": {
+          "lib/net6.0/Tailwind.Extensions.AspNetCore.dll": {}
+        },
+        "runtime": {
+          "lib/net6.0/Tailwind.Extensions.AspNetCore.dll": {}
+        }
+      },
+      "TailwindCssTagHelpers/0.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/net7.0/TailwindCssTagHelpers.dll": {}
+        },
+        "runtime": {
+          "lib/net7.0/TailwindCssTagHelpers.dll": {}
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
       }
     }
   },
@@ -4343,6 +4419,20 @@
         "lib/netstandard2.0/Microsoft.AspNetCore.Razor.Language.dll",
         "microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
         "microsoft.aspnetcore.razor.language.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.SpaServices.Extensions/6.0.1": {
+      "sha512": "YtFjLoTsjrVbgA1VQvkZ5gRlVmODJ+npVNcIoW3NWudB0EtImT8exnhB9Yru5xWefS2T7L2hG7VI2tkPVUpNbQ==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.spaservices.extensions/6.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net6.0/Microsoft.AspNetCore.SpaServices.Extensions.dll",
+        "microsoft.aspnetcore.spaservices.extensions.6.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.spaservices.extensions.nuspec"
       ]
     },
     "Microsoft.Bcl.AsyncInterfaces/7.0.0": {
@@ -6054,6 +6144,52 @@
         "microsoft.extensions.fileproviders.embedded.8.0.0.nupkg.sha512",
         "microsoft.extensions.fileproviders.embedded.nuspec",
         "tasks/netstandard2.0/Microsoft.Extensions.FileProviders.Embedded.Manifest.Task.dll"
+      ]
+    },
+    "Microsoft.Extensions.FileProviders.Physical/6.0.0": {
+      "sha512": "QvkL7l0nM8udt3gfyu0Vw8bbCXblxaKOl7c2oBfgGy4LCURRaL9XWZX1FWJrQc43oMokVneVxH38iz+bY1sbhg==",
+      "type": "package",
+      "path": "microsoft.extensions.fileproviders.physical/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.FileProviders.Physical.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.FileProviders.Physical.dll",
+        "lib/net461/Microsoft.Extensions.FileProviders.Physical.xml",
+        "lib/net6.0/Microsoft.Extensions.FileProviders.Physical.dll",
+        "lib/net6.0/Microsoft.Extensions.FileProviders.Physical.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Physical.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.FileProviders.Physical.xml",
+        "microsoft.extensions.fileproviders.physical.6.0.0.nupkg.sha512",
+        "microsoft.extensions.fileproviders.physical.nuspec",
+        "useSharedDesignerContext.txt"
+      ]
+    },
+    "Microsoft.Extensions.FileSystemGlobbing/6.0.0": {
+      "sha512": "ip8jnL1aPiaPeKINCqaTEbvBFDmVx9dXQEBZ2HOBRXPD1eabGNqP/bKlsIcp7U2lGxiXd5xIhoFcmY8nM4Hdiw==",
+      "type": "package",
+      "path": "microsoft.extensions.filesystemglobbing/6.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "LICENSE.TXT",
+        "THIRD-PARTY-NOTICES.TXT",
+        "buildTransitive/netcoreapp2.0/Microsoft.Extensions.FileSystemGlobbing.targets",
+        "buildTransitive/netcoreapp3.1/_._",
+        "lib/net461/Microsoft.Extensions.FileSystemGlobbing.dll",
+        "lib/net461/Microsoft.Extensions.FileSystemGlobbing.xml",
+        "lib/net6.0/Microsoft.Extensions.FileSystemGlobbing.dll",
+        "lib/net6.0/Microsoft.Extensions.FileSystemGlobbing.xml",
+        "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.dll",
+        "lib/netstandard2.0/Microsoft.Extensions.FileSystemGlobbing.xml",
+        "microsoft.extensions.filesystemglobbing.6.0.0.nupkg.sha512",
+        "microsoft.extensions.filesystemglobbing.nuspec",
+        "useSharedDesignerContext.txt"
       ]
     },
     "Microsoft.Extensions.Identity.Core/8.0.0": {
@@ -8738,6 +8874,34 @@
         "system.windows.extensions.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "Tailwind.Extensions.AspNetCore/1.0.0": {
+      "sha512": "D1DSdyy6qBt17nwz382bLhJTJfb2r4W7bWf6klPnKFARHVHw3XhFmAPCOGe1Wu/fHyNJt6Z7Nu2gAajPK2GWvA==",
+      "type": "package",
+      "path": "tailwind.extensions.aspnetcore/1.0.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net6.0/Tailwind.Extensions.AspNetCore.dll",
+        "tailwind.extensions.aspnetcore.1.0.0.nupkg.sha512",
+        "tailwind.extensions.aspnetcore.nuspec"
+      ]
+    },
+    "TailwindCssTagHelpers/0.5.0": {
+      "sha512": "wzJG21KFVcO9D2eDs3HNkCSRLrERJtRP5dZB6EOGHhzMxgH8PTqaslPes5mARy3ZqlDF2UPs099VYKz8LdONhA==",
+      "type": "package",
+      "path": "tailwindcsstaghelpers/0.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "LICENSE",
+        "README.md",
+        "lib/net6.0/TailwindCssTagHelpers.dll",
+        "lib/net7.0/TailwindCssTagHelpers.dll",
+        "logo.png",
+        "tailwindcsstaghelpers.0.5.0.nupkg.sha512",
+        "tailwindcsstaghelpers.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -8749,7 +8913,9 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Sqlite >= 8.0.0",
       "Microsoft.EntityFrameworkCore.Tools >= 8.0.0",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.0"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 8.0.0",
+      "Tailwind.Extensions.AspNetCore >= 1.0.0",
+      "TailwindCssTagHelpers >= 0.5.0"
     ]
   },
   "packageFolders": {
@@ -8827,6 +8993,14 @@
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
             "target": "Package",
             "version": "[8.0.0, )"
+          },
+          "Tailwind.Extensions.AspNetCore": {
+            "target": "Package",
+            "version": "[1.0.0, )"
+          },
+          "TailwindCssTagHelpers": {
+            "target": "Package",
+            "version": "[0.5.0, )"
           }
         },
         "imports": [

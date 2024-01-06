@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "Qikvifq4vYe5PpHdmNsCRCAxCveUs+d5rF4OQdeaAvhpKj9WrixyUgaLU2PhVjjjgF0R707xtGZEhLOycOajnw==",
+  "dgSpecHash": "itG+hX54So4Pf3jVjC4+h0JwFn7A9RnSCsNjgTxcaNf6KFnumXlZQC/8aNZ9ZI5qXupNxQoJAGjcTo68DWuzeQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\RealEstate2.csproj",
   "expectedPackageFiles": [
@@ -70,6 +70,7 @@
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\8.0.0\\microsoft.aspnetcore.identity.ui.8.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.aspnetcore.metadata\\8.0.0\\microsoft.aspnetcore.metadata.8.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
+    "C:\\Users\\maher\\.nuget\\packages\\microsoft.aspnetcore.spaservices.extensions\\6.0.1\\microsoft.aspnetcore.spaservices.extensions.6.0.1.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\7.0.0\\microsoft.bcl.asyncinterfaces.7.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.build\\17.7.2\\microsoft.build.17.7.2.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.build.framework\\17.7.2\\microsoft.build.framework.17.7.2.nupkg.sha512",
@@ -107,6 +108,8 @@
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.dependencymodel\\8.0.0\\microsoft.extensions.dependencymodel.8.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.fileproviders.abstractions\\8.0.0\\microsoft.extensions.fileproviders.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.fileproviders.embedded\\8.0.0\\microsoft.extensions.fileproviders.embedded.8.0.0.nupkg.sha512",
+    "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.fileproviders.physical\\6.0.0\\microsoft.extensions.fileproviders.physical.6.0.0.nupkg.sha512",
+    "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.filesystemglobbing\\6.0.0\\microsoft.extensions.filesystemglobbing.6.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.identity.core\\8.0.0\\microsoft.extensions.identity.core.8.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.identity.stores\\8.0.0\\microsoft.extensions.identity.stores.8.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0\\microsoft.extensions.logging.8.0.0.nupkg.sha512",
@@ -185,7 +188,9 @@
     "C:\\Users\\maher\\.nuget\\packages\\system.threading.channels\\7.0.0\\system.threading.channels.7.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\system.threading.tasks.dataflow\\7.0.0\\system.threading.tasks.dataflow.7.0.0.nupkg.sha512",
     "C:\\Users\\maher\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512",
-    "C:\\Users\\maher\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512"
+    "C:\\Users\\maher\\.nuget\\packages\\system.windows.extensions\\7.0.0\\system.windows.extensions.7.0.0.nupkg.sha512",
+    "C:\\Users\\maher\\.nuget\\packages\\tailwind.extensions.aspnetcore\\1.0.0\\tailwind.extensions.aspnetcore.1.0.0.nupkg.sha512",
+    "C:\\Users\\maher\\.nuget\\packages\\tailwindcsstaghelpers\\0.5.0\\tailwindcsstaghelpers.0.5.0.nupkg.sha512"
   ],
   "logs": []
 }

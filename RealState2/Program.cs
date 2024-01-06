@@ -1,6 +1,9 @@
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Options;
+using RealEstate2.Servives;
+using RealEstate2.Servives.Interfaces;
 using RealState2.Data;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -10,9 +13,21 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 builder.Services.AddDbContext<RealEstateDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
+builder.Services.AddScoped<IVendorService,VendorService>();
+/*builder.Services.AddScoped<IFacilityService,FacilityService>();*/
+builder.Services.AddScoped<SecurityService>();
 
-builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-    .AddEntityFrameworkStores<RealEstateDbContext>();
+builder.Services.AddDefaultIdentity<IdentityUser>(options => {
+    options.SignIn.RequireConfirmedAccount = false;
+   options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = false;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 5;
+    options.Password.RequiredUniqueChars = 0; })
+    .AddRoles<IdentityRole>() 
+   .AddEntityFrameworkStores<RealEstateDbContext>()
+   .AddDefaultTokenProviders();
 builder.Services.AddAuthentication(options =>
 {
     options.DefaultSignInScheme = CookieAuthenticationDefaults.AuthenticationScheme;
@@ -22,7 +37,7 @@ builder.Services.AddAuthentication(options =>
 .AddCookie(options =>
  {
      options.Cookie.Name = "YourCookieName";
-     options.ExpireTimeSpan = TimeSpan.FromDays(1); // Cookie expiration time
+     options.ExpireTimeSpan = TimeSpan.FromDays(1); 
  });
 builder.Services.AddHttpContextAccessor();
 

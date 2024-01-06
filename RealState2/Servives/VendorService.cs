@@ -9,125 +9,126 @@ namespace RealEstate2.Servives
     public class VendorService : IVendorService
     {
         private readonly RealEstateDbContext _RealEstatedbContext;
-        private readonly UserManager<Vendor> _userManager;
-        private readonly SignInManager<Vendor> _signInManager;
-        private readonly IHttpContextAccessor _httpContextAccessor;
-        public VendorService(RealEstateDbContext dbContext)
+        private readonly SecurityService _securityService;
+
+        public VendorService(RealEstateDbContext dbContext, SecurityService securityService)
         {
             _RealEstatedbContext = dbContext;
+            _securityService = securityService;
         }
 
-        public VendorService(UserManager<Vendor> userManager, SignInManager<Vendor> signInManager, IHttpContextAccessor httpContextAccessor)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _httpContextAccessor = httpContextAccessor;
-        }
-        public async Task<bool> SignIn(string email, string password, bool isPersistent, bool lockoutOnFailure)
-        {
-            var result = await _signInManager.PasswordSignInAsync(email, password, isPersistent, lockoutOnFailure);
-            if (result.Succeeded)
-            {
-                var user = await _userManager.FindByEmailAsync(email);
-                var httpContext = _httpContextAccessor.HttpContext;
-                if (httpContext != null)
+        /*        public VendorService(UserManager<Vendor> userManager, SignInManager<Vendor> signInManager, IHttpContextAccessor httpContextAccessor)
                 {
-
-                    httpContext.Session.SetString("UserId", user._Id.ToString());
-                }
-
-            return result.Succeeded;
-               
-            }
-            {
-                throw new ApplicationException($"Failed to register vendor. Errors: {string.Join(", ", result.Errors)}");
-            }
-        }
-        public async Task<Vendor> Register(Vendor v, string password)
+                    _userManager = userManager;
+                    _signInManager = signInManager;
+                    _httpContextAccessor = httpContextAccessor;
+                }*/
+        public async Task<Vendor> CreateVendor(Vendor v, string password)
         {
             if (v == null)
             {
                 throw new ArgumentException(nameof(v));
+              
+                    
+                };
+            if (password == null)
+            {
+                return null;
             }
-            var newUser = new Vendor
+            var user = new IdentityUser()
             {
                 UserName = v.Email,
                 Email = v.Email,
-                Firstname = v.Firstname,
-                LastName = v.LastName,
-                Phone = v.Phone
-              
+                   
+
+
             };
-            var result = await _userManager.CreateAsync(newUser, password);
-            if (result.Succeeded)
+            var resultUser = await _securityService.Resgiter(user, v.Password);
+            if (resultUser != null)
             {
-                var httpContext = _httpContextAccessor.HttpContext;
-                if (httpContext != null)
+                var newUser = new Vendor
                 {
-                    
-                    httpContext.Session.SetString("UserId", newUser._Id.ToString());
-                }
+                    Firstname = v.Firstname,
+                    LastName = v.LastName,
+                    Phone = v.Phone,
+                    ProfilePictute = v.ProfilePictute,
+                    UserId = user.Id,
+                    Email = v.Email
 
-                return newUser;
-            }
-            {
+                };
+        
+                    await _RealEstatedbContext.Vendors.AddAsync(newUser);
+                    _RealEstatedbContext.SaveChanges();
+                    return newUser;
                 
-                throw new ApplicationException($"Failed to register vendor. Errors: {string.Join(", ", result.Errors)}");
+
             }
+            return null;
         }
 
-        public async Task<Vendor> DeleteVendor(int Id)
-        {
-            try
+            public async Task<Vendor> DeleteVendor(int Id)
             {
-                var vendorToDelete = await _RealEstatedbContext.Vendors.FirstAsync(vendor => vendor._Id == Id);
-                if(vendorToDelete == null) {
-                    Console.WriteLine("vendor doesn't exist ");
-                    return null;
-                }
-                else
-
+                try
                 {
-                     _RealEstatedbContext.Vendors.Remove(vendorToDelete);
-                     await _RealEstatedbContext.SaveChangesAsync();
-                    return vendorToDelete;
+                    var vendorToDelete = await _RealEstatedbContext.Vendors.FirstAsync(vendor => vendor._Id == Id);
+                    if (vendorToDelete == null) {
+                        Console.WriteLine("vendor doesn't exist ");
+                        return null;
+                    }
+                    else
+
+                    {
+                        _RealEstatedbContext.Vendors.Remove(vendorToDelete);
+                        await _RealEstatedbContext.SaveChangesAsync();
+                        return vendorToDelete;
+
+                    }
 
                 }
-
+                catch (Exception ex) {
+                    Console.WriteLine($"An Error Occurred while Deleting the vendor:{ex.Message}");
+                    throw;
+                }
             }
-            catch(Exception ex) {
-                Console.WriteLine($"An Error Occurred while Deleting the vendor:{ex.Message}");
-                throw;
+
+            public List<Vendor> GetAll()
+            {
+                var vendors = _RealEstatedbContext.Vendors.ToList();
+                return vendors;
             }
-        }
 
-        public List<Vendor> GetAll()
-        {
-            var vendors = _RealEstatedbContext.Vendors.ToList();
-            return vendors;
-        }
 
-      
 
-        public async  Task<Vendor> GetVendorByID(int Id)
-           
-        {
-           
-            
+            public async Task<Vendor> GetVendorByID(int Id)
+
+            {
+
+
                 var vendors = await _RealEstatedbContext.Vendors.FirstAsync(vendor => vendor._Id == Id);
-            return vendors;
-            
-          
+                return vendors;
+
+
+            }
+
+        public async Task<bool> Login(string username, string password)
+        {
+           var user = await _securityService.Login(username, password );
+            if (user != null)
+            {
+                return true;
+            }
+            else return false;
         }
 
         public async Task<Vendor> UpdateVendor(Vendor v)
         {
             try
             {
-                 _RealEstatedbContext.Vendors.Update(v);
+                _RealEstatedbContext.Vendors.Update(v);
+                
                 await _RealEstatedbContext.SaveChangesAsync();
                 return v;
-                
+
             }
             catch (Exception ex)
             {
@@ -138,9 +139,9 @@ namespace RealEstate2.Servives
 
         public async Task<bool> VendorExists(int Id)
         {
-          
+
             var vendor = await _RealEstatedbContext.Vendors.FirstAsync(vendor => vendor._Id == Id);
-            if (vendor!= null)
+            if (vendor != null)
             {
                 return true;
             }

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "CG9/p7Ah2qlDbvFWgtpE4H3QZQXpmL+dCigxGuFDZi0=",
+  "Hash": "YyI0OT/r1B54CFLVOiJW+/J9R0ectMi5AWmuzoOLsPY=",
   "Source": "RealEstate2",
   "BasePath": "_content/RealEstate2",
   "Mode": "Default",
@@ -1252,6 +1252,25 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
+      "Identity": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\css\\styles.css",
+      "SourceId": "RealEstate2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\",
+      "BasePath": "_content/RealEstate2",
+      "RelativePath": "css/styles.css",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\css\\styles.css"
+    },
+    {
       "Identity": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\favicon.ico",
       "SourceId": "RealEstate2",
       "SourceType": "Discovered",
@@ -2371,6 +2390,44 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\lib\\jquery-validation-unobtrusive\\LICENSE.txt"
+    },
+    {
+      "Identity": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\pictures\\pic1.jpg",
+      "SourceId": "RealEstate2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\",
+      "BasePath": "_content/RealEstate2",
+      "RelativePath": "pictures/pic1.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pictures\\pic1.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\pictures\\pic2.jpg",
+      "SourceId": "RealEstate2",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\",
+      "BasePath": "_content/RealEstate2",
+      "RelativePath": "pictures/pic2.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "PreferTarget",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\pictures\\pic2.jpg"
     }
   ]
 }

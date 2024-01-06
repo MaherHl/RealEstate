@@ -21,13 +21,15 @@ namespace RealEstate2.Models
         public bool availability { get; set; }
         public double rate { get; set; }
         public rentingType? rentingType { get; set; }
-        public Vendor owner {  get; set; }
+        public Vendor Owner {  get; set; }
+        public int VendorId { get; set; }
         public string description { get; set; }
         public string location {  get; set; }
         public string City{ get; set; }
         public int rooms { get; set; }
         public int baths { get; set; }
-       public List<String> amenities = new List<string>();
+
+       public List<string> amenities {  get; set; }
         public bool isPetFriendly { get; set; }   
     }
 }

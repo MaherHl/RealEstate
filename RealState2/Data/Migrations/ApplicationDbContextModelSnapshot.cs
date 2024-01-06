@@ -240,14 +240,19 @@ namespace RealState2.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Password")
+                    b.Property<string>("LastName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Phone")
-                        .HasColumnType("int");
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("lastname")
+                    b.Property<string>("ProfilePictute")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -278,6 +283,13 @@ namespace RealState2.Data.Migrations
                     b.Property<int?>("PropertyType")
                         .HasColumnType("int");
 
+                    b.Property<int>("VendorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("amenities")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<bool>("availability")
                         .HasColumnType("bit");
 
@@ -295,9 +307,6 @@ namespace RealState2.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("owner_Id")
-                        .HasColumnType("int");
-
                     b.Property<double>("rate")
                         .HasColumnType("float");
 
@@ -309,7 +318,7 @@ namespace RealState2.Data.Migrations
 
                     b.HasKey("_id");
 
-                    b.HasIndex("owner_Id");
+                    b.HasIndex("VendorId");
 
                     b.ToTable("Facilities");
                 });
@@ -367,18 +376,18 @@ namespace RealState2.Data.Migrations
 
             modelBuilder.Entity("RealEstate2.Models.facility", b =>
                 {
-                    b.HasOne("RealEstate2.Models.Vendor", "owner")
-                        .WithMany("RealEstate")
-                        .HasForeignKey("owner_Id")
+                    b.HasOne("RealEstate2.Models.Vendor", "Owner")
+                        .WithMany("Facilities")
+                        .HasForeignKey("VendorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("owner");
+                    b.Navigation("Owner");
                 });
 
             modelBuilder.Entity("RealEstate2.Models.Vendor", b =>
                 {
-                    b.Navigation("RealEstate");
+                    b.Navigation("Facilities");
                 });
 #pragma warning restore 612, 618
         }
