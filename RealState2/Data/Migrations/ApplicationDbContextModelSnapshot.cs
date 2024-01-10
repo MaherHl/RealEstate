@@ -233,7 +233,6 @@ namespace RealState2.Data.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("_Id"));
 
                     b.Property<string>("Email")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Firstname")
@@ -249,7 +248,6 @@ namespace RealState2.Data.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProfilePictute")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")

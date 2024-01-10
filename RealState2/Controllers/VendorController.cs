@@ -18,9 +18,12 @@ namespace RealEstate2.Controllers
         public async Task<IActionResult> SignUp([FromForm] Vendor v, string password)
         {
 
-            await _vendorService.CreateVendor(v, password);
+             var vendor = await _vendorService.CreateVendor(v, password);
 
-
+            if (vendor != null)
+            {
+                return RedirectToAction("SignIn");
+            }
 
 
 
@@ -33,8 +36,14 @@ namespace RealEstate2.Controllers
         { 
             return View();
         }
+        [Route("/Vendor/SignIn")]
+        public async Task<IActionResult> SignIn()
+        {
+            return View();
+        }
 
         [Route("/Vendor/SignIn")]
+        [HttpPost]
        public async Task<IActionResult> SignIn([FromForm]string Email, string password)
         {
             bool result = await _vendorService.Login(Email, password);

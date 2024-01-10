@@ -2,8 +2,11 @@
   "ExpandedNodes": [
     "",
     "\\RealState2",
-    "\\RealState2\\Data"
+    "\\RealState2\\Data",
+    "\\RealState2\\Servives",
+    "\\RealState2\\Views",
+    "\\RealState2\\Views\\Vendor"
   ],
-  "SelectedNode": "\\RealState2",
+  "SelectedNode": "\\RealState2\\Views\\Vendor\\SignUp.cshtml",
   "PreviewInSolutionExplorer": false
 }

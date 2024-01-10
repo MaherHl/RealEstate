@@ -14,8 +14,9 @@ namespace RealEstate2.Models
         public string Firstname { get; set; }
         [Required]
         public string LastName { get; set; }
-        public string ProfilePictute { get; set; }
-        public string Email { get; set; }
+        
+        public string? ProfilePictute { get; set; }
+        public string?Email { get; set; }
     
         [Required]
         public string Phone { get; set; }
@@ -23,6 +24,6 @@ namespace RealEstate2.Models
         [NotMapped]
          public string Password { get; set; }
 
-        public List<facility> Facilities { get; set; }
+        public List<facility>? Facilities { get; set; }
     }
 }

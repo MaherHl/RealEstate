@@ -18,7 +18,7 @@ namespace RealEstate2.Servives
         }
 
         /*        public VendorService(UserManager<Vendor> userManager, SignInManager<Vendor> signInManager, IHttpContextAccessor httpContextAccessor)
-                {
+                    {
                     _userManager = userManager;
                     _signInManager = signInManager;
                     _httpContextAccessor = httpContextAccessor;

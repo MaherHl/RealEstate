@@ -257,6 +257,18 @@
       "PackagePath": "staticwebassets\\pictures\\pic2.jpg"
     },
     {
+      "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\pictures\\pic3.jpg",
+      "PackagePath": "staticwebassets\\pictures\\pic3.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\pictures\\pic4.jpg",
+      "PackagePath": "staticwebassets\\pictures\\pic4.jpg"
+    },
+    {
+      "Id": "C:\\Users\\maher\\OneDrive\\Bureau\\RealState2\\RealState2\\wwwroot\\pictures\\timo-wagner-FTudIwhTfUU-unsplash.jpg",
+      "PackagePath": "staticwebassets\\pictures\\timo-wagner-FTudIwhTfUU-unsplash.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net8.0\\staticwebassets\\msbuild.RealEstate2.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
