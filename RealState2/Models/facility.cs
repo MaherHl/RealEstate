@@ -19,7 +19,7 @@ namespace RealEstate2.Models
         public PropertyType? PropertyType { get; set; }
         public double Price { get; set; }
         public bool availability { get; set; }
-        public double rate { get; set; }
+        public double? rate { get; set; }
         public rentingType? rentingType { get; set; }
         public Vendor Owner {  get; set; }
         public int VendorId { get; set; }
@@ -27,9 +27,6 @@ namespace RealEstate2.Models
         public string location {  get; set; }
         public string City{ get; set; }
         public int rooms { get; set; }
-        public int baths { get; set; }
-
-       public List<string> amenities {  get; set; }
         public bool isPetFriendly { get; set; }   
     }
 }

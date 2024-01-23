@@ -14,6 +14,7 @@ builder.Services.AddDbContext<RealEstateDbContext>(options =>
     options.UseSqlServer(connectionString));
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddScoped<IVendorService,VendorService>();
+builder.Services.AddScoped<IFacilityService,FacilityService>();
 /*builder.Services.AddScoped<IFacilityService,FacilityService>();*/
 builder.Services.AddScoped<SecurityService>();
 
@@ -39,6 +40,14 @@ builder.Services.AddAuthentication(options =>
      options.Cookie.Name = "YourCookieName";
      options.ExpireTimeSpan = TimeSpan.FromDays(1); 
  });
+builder.Services.AddDistributedMemoryCache();
+
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddControllersWithViews();
@@ -63,6 +72,7 @@ app.UseStaticFiles();
 app.UseRouting();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",

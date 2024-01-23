@@ -9,21 +9,28 @@ namespace RealEstate2.Servives
     public class FacilityService : IFacilityService
     {
         private readonly RealEstateDbContext _dbContext;
-        public FacilityService(RealEstateDbContext dbContext)
+        private readonly IHttpContextAccessor _httpContext;
+        public FacilityService(RealEstateDbContext dbContext, IHttpContextAccessor httpContext)
         {
             _dbContext = dbContext;
+            _httpContext = httpContext;
         }
         public async Task<facility> AddFacilty(facility f)
         {
             if( f == null) { throw new ArgumentNullException(nameof(f)); 
             }
-           
-           var newFacilty=  await _dbContext.Facilities.AddAsync(f);
-            await _dbContext.SaveChangesAsync();
-            return newFacilty.Entity ;
+            var id = _httpContext.HttpContext.Session.GetInt32("VendorId");
+            if (id != null)
+            {
+                f.VendorId = (int)id;
+                var newFacilty = await _dbContext.Facilities.AddAsync(f);
+                await _dbContext.SaveChangesAsync();
+                return newFacilty.Entity;
+            }
+            else return null;
         }
 
-        public async Task<facility> Deletefacility(int id , Vendor v)
+        public async Task<facility> Deletefacility(int id , int VendorId)
         {
             var Facilty = await _dbContext.Facilities.FindAsync(id);
                 if (Facilty== null )
@@ -32,7 +39,7 @@ namespace RealEstate2.Servives
                 return null;
 
             };
-            if (v._Id == Facilty.Owner._Id)
+            if (VendorId == Facilty.Owner._Id)
             {
                 var deletedFacility = _dbContext.Facilities.Remove(Facilty);
                await  _dbContext.SaveChangesAsync();
@@ -50,7 +57,7 @@ namespace RealEstate2.Servives
         {
             if (Name != null) {
                 var Facilty = await _dbContext.Facilities
-                    .FirstOrDefaultAsync(f=>f.FacilityName==Name);
+                    .FirstOrDefaultAsync(f=>f.FacilityName.Contains(Name));
                 if(Facilty== null)
                 {
                     Console.WriteLine("Not Found");
@@ -72,13 +79,28 @@ namespace RealEstate2.Servives
             if(city != null)
             {
                 var FacilitiesInCity = await  _dbContext.Facilities
-                    .Where(f => f.City==city)
+                    .Where(f => f.City.Contains(city))
                     .ToListAsync();
                 return FacilitiesInCity;
             }
             else
             {
                 Console.WriteLine("Invalid city parameter");
+                return null;
+            }
+        }
+        public async Task<List<facility>> FilterByOwner(int id)
+        {
+            if (id != null)
+            {
+                var Facilities = await _dbContext.Facilities
+                    .Where(f => f.VendorId == id)
+                    .ToListAsync();
+                return Facilities;
+            }
+            else
+            {
+                Console.WriteLine("Invalid id parameter");
                 return null;
             }
         }
@@ -125,13 +147,13 @@ namespace RealEstate2.Servives
             return Facility;
         }
 
-        public async Task<facility> Updatefacilty(int id, facility updatedFacility, Vendor v)
+        public async Task<facility> Updatefacilty(int id, facility updatedFacility, int VendorId)
         {
 
             var oldFacility = await _dbContext.Facilities.FindAsync(id);
             if (oldFacility != null)
             {
-                if(v._Id == oldFacility.Owner._Id)
+                if(VendorId == oldFacility.VendorId)
                 {
 
 
@@ -139,14 +161,11 @@ namespace RealEstate2.Servives
                 oldFacility.PropertyType = updatedFacility.PropertyType;
                 oldFacility.Price = updatedFacility.Price;
                 oldFacility.availability = updatedFacility.availability;
-                oldFacility.rate = updatedFacility.rate;
                 oldFacility.rentingType = updatedFacility.rentingType;
                 oldFacility.description = updatedFacility.description;
                 oldFacility.location = updatedFacility.location;
                 oldFacility.City = updatedFacility.City;
                 oldFacility.rooms = updatedFacility.rooms;
-                oldFacility.baths = updatedFacility.baths;
-                oldFacility.amenities = updatedFacility.amenities;
                 oldFacility.isPetFriendly = updatedFacility.isPetFriendly;
                    await _dbContext.SaveChangesAsync();
 

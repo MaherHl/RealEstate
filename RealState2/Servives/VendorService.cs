@@ -10,11 +10,14 @@ namespace RealEstate2.Servives
     {
         private readonly RealEstateDbContext _RealEstatedbContext;
         private readonly SecurityService _securityService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public VendorService(RealEstateDbContext dbContext, SecurityService securityService)
+
+        public VendorService(RealEstateDbContext dbContext, SecurityService securityService, IHttpContextAccessor httpContextAccessor)
         {
             _RealEstatedbContext = dbContext;
             _securityService = securityService;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         /*        public VendorService(UserManager<Vendor> userManager, SignInManager<Vendor> signInManager, IHttpContextAccessor httpContextAccessor)
@@ -46,12 +49,23 @@ namespace RealEstate2.Servives
             var resultUser = await _securityService.Resgiter(user, v.Password);
             if (resultUser != null)
             {
+                byte[] profilePictureData = null;
+
+                if (v.PictureFile != null && v.PictureFile.Length > 0)
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        await v.PictureFile.CopyToAsync(memoryStream);
+                        profilePictureData = memoryStream.ToArray();
+                    }
+                }
                 var newUser = new Vendor
                 {
                     Firstname = v.Firstname,
                     LastName = v.LastName,
                     Phone = v.Phone,
-                    ProfilePictute = v.ProfilePictute,
+
+                    ProfilePicture = profilePictureData,
                     UserId = user.Id,
                     Email = v.Email
 
@@ -110,14 +124,21 @@ namespace RealEstate2.Servives
 
             }
 
-        public async Task<bool> Login(string username, string password)
+        public async Task<Vendor> Login(string username, string password)
         {
            var user = await _securityService.Login(username, password );
             if (user != null)
+
             {
-                return true;
+                var vendor = await _RealEstatedbContext.Vendors.FirstOrDefaultAsync(vendor => vendor.Email == username);                 if (vendor != null)
+                {
+                    return vendor;
+
+                }
+                else return null;
+                
             }
-            else return false;
+            else return null;
         }
 
         public async Task<Vendor> UpdateVendor(Vendor v)

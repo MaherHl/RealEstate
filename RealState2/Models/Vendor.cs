@@ -15,8 +15,10 @@ namespace RealEstate2.Models
         [Required]
         public string LastName { get; set; }
         
-        public string? ProfilePictute { get; set; }
-        public string?Email { get; set; }
+        public byte[]? ProfilePicture { get; set; }
+        [NotMapped]
+        public IFormFile ? PictureFile {  get; set; }
+        public string?Email { get; set; }   
     
         [Required]
         public string Phone { get; set; }

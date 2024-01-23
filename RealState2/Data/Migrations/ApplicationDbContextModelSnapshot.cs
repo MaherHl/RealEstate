@@ -247,8 +247,8 @@ namespace RealState2.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ProfilePictute")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<byte[]>("ProfilePicture")
+                        .HasColumnType("varbinary(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
@@ -284,15 +284,8 @@ namespace RealState2.Data.Migrations
                     b.Property<int>("VendorId")
                         .HasColumnType("int");
 
-                    b.Property<string>("amenities")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("availability")
                         .HasColumnType("bit");
-
-                    b.Property<int>("baths")
-                        .HasColumnType("int");
 
                     b.Property<string>("description")
                         .IsRequired()
@@ -305,7 +298,7 @@ namespace RealState2.Data.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<double>("rate")
+                    b.Property<double?>("rate")
                         .HasColumnType("float");
 
                     b.Property<int?>("rentingType")

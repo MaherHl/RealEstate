@@ -10,7 +10,7 @@ namespace RealEstate2.Servives.Interfaces
          Task<Vendor> CreateVendor(Vendor v ,string password);
         Task<Vendor> UpdateVendor(Vendor v);
         Task<Vendor> DeleteVendor(int Id);
-        Task<bool> Login(string username, string password);
+        Task<Vendor> Login(string username, string password);
         
 
     }

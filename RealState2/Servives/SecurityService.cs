@@ -8,7 +8,7 @@ namespace RealEstate2.Servives
     {
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+  
         private readonly RoleManager<IdentityRole> _roleManager;
         public SecurityService(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
@@ -43,6 +43,8 @@ namespace RealEstate2.Servives
         
             
                   var result = await _signInManager.PasswordSignInAsync(username, password, false, lockoutOnFailure: false);
+
+
 
                      return result;
       
