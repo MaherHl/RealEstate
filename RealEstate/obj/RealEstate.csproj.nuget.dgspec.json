@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\maher\\OneDrive\\Bureau\\schoolProject\\RealEstate\\RealEstate\\RealEstate.csproj": {}
+    "C:\\Users\\maher\\OneDrive\\Bureau\\realEstate\\RealEstate\\RealEstate.csproj": {}
   },
   "projects": {
-    "C:\\Users\\maher\\OneDrive\\Bureau\\schoolProject\\RealEstate\\RealEstate\\RealEstate.csproj": {
+    "C:\\Users\\maher\\OneDrive\\Bureau\\realEstate\\RealEstate\\RealEstate.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\maher\\OneDrive\\Bureau\\schoolProject\\RealEstate\\RealEstate\\RealEstate.csproj",
+        "projectUniqueName": "C:\\Users\\maher\\OneDrive\\Bureau\\realEstate\\RealEstate\\RealEstate.csproj",
         "projectName": "RealEstate",
-        "projectPath": "C:\\Users\\maher\\OneDrive\\Bureau\\schoolProject\\RealEstate\\RealEstate\\RealEstate.csproj",
+        "projectPath": "C:\\Users\\maher\\OneDrive\\Bureau\\realEstate\\RealEstate\\RealEstate.csproj",
         "packagesPath": "C:\\Users\\maher\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\maher\\OneDrive\\Bureau\\schoolProject\\RealEstate\\RealEstate\\obj\\",
+        "outputPath": "C:\\Users\\maher\\OneDrive\\Bureau\\realEstate\\RealEstate\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
