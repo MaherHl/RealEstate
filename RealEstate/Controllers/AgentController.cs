@@ -20,9 +20,9 @@ namespace RealEstate.Controllers
             _agentService = agentService;
         }
         [HttpPost("Register")]
-        public async Task<bool> Register(Agent ag, string password)
+        public async Task<bool> Register([FromForm] Agent ag)
         {
-            var result = await _agentService.SignUp(ag, password);
+            var result = await _agentService.SignUp(ag, ag.Password);
             if (result != null)
             {
                 return true;
@@ -31,13 +31,14 @@ namespace RealEstate.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> LogIn(string email, string password)
-        {
-            var agent = await _agentService.SignIn(email, password);
+        public async Task<IActionResult> LogIn([FromForm] LoginRequest lg )
+        
+       {
+            var agent = await _agentService.SignIn(lg.email, lg.password);
             if (agent != null)
             {
                 var token = _agentService.generateToken(agent);
-                return Ok(token);
+                return Ok(new { Token = token, Agent = agent });
             }
             else return BadRequest("smtg is woring");
 

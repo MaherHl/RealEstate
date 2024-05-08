@@ -9,6 +9,8 @@ import Appointement from './Pages/Appointement';
 import Main from './Pages/Main';
 import PropertyDetail from './Pages/PropertyDetail';
 import Contact from './Pages/Contact';
+import { BrowserRouter as Router, Route ,Routes } from 'react-router-dom';
+import Edit from './Pages/Edit';
 
 function App() {
   return (
@@ -21,8 +23,28 @@ function App() {
     {/*<AddForm/>*/}
    { /*<Appointement/>*/}
    {/* <Main/> */}
-   <PropertyDetail/>
+   {/* <PropertyDetail/> */}
    {/* <Contact/> */}
+
+   <Router>
+
+      <Routes>
+
+        <Route path="/" element={<LandingPage/>} />
+        <Route path="/Signup" element={<SignUp/>} />
+        <Route path="/contact" component={<Contact/>} />
+        <Route path='/login' element={<Login/>}/>
+        <Route path='/main' element = {<Main/>}/>
+        <Route path="/dashboard" element={<Dashboard/>} />
+        <Route path='/addFacility' element={<AddForm/>}/>
+        <Route path='/Edit' element={<Edit/>}/>
+
+    
+      </Routes>
+   </Router>
+      
+
+  
    
   </>
   );

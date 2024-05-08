@@ -285,3 +285,4 @@ C:\Users\maher\OneDrive\Bureau\RealEstate\RealEstate\obj\Debug\net8.0\refint\Rea
 C:\Users\maher\OneDrive\Bureau\RealEstate\RealEstate\obj\Debug\net8.0\RealEstate.pdb
 C:\Users\maher\OneDrive\Bureau\RealEstate\RealEstate\obj\Debug\net8.0\RealEstate.genruntimeconfig.cache
 C:\Users\maher\OneDrive\Bureau\RealEstate\RealEstate\obj\Debug\net8.0\ref\RealEstate.dll
+C:\Users\maher\OneDrive\Bureau\realEstate\RealEstate\bin\Debug\net8.0\RealEstate.staticwebassets.runtime.json

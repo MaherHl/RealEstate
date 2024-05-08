@@ -1,6 +1,45 @@
 import React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import { useNavigate } from 'react-router'
 
 function SignUp() {
+const [FirstName, setFirstName] = useState('')
+const [LastName, setLastName] = useState('')
+const [email, setEmail] = useState('')
+const [password, setPassword] = useState('')
+const [Phone, setPhone] = useState('')
+const [picture, setpicture] = useState('')
+
+const navigate = useNavigate()
+ const handleSubmit = async (e)=>{
+    e.preventDefault();
+    console.log(FirstName + LastName + Phone + email + password + " " + picture )
+    const formData = new FormData();
+    formData.append('Firstname', FirstName);
+    formData.append('LastName', LastName);
+    formData.append('Email', email);
+    formData.append('Password', password);
+    formData.append('Phone', Phone);
+    formData.append('PictureFile', picture);
+    console.log(formData.Password)
+    console.log(formData)
+    await  axios.post('https://localhost:7108/api/Agent/Register', formData, password,{
+    headers: {
+        'Content-Type': 'multipart/form-data'
+    },
+    })
+    .then(res=>{
+        if(res){
+            console.log(res)
+            navigate("/login")
+        }
+    })
+    .catch(err=>{
+        console.log(err)
+    })
+ }
+
   return (
     <section class="bg-white">
     <div class="flex justify-center min-h-screen">
@@ -21,27 +60,27 @@ function SignUp() {
                 <form class="grid grid-cols-1 gap-6 mt-8 md:grid-cols-2"  >
                     <div>
                         <label class="block mb-2 text-sm text-gray-600 ">First Name</label>
-                        <input type="text" placeholder="John" asp-for="Firstname"  class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input onChange={(e)=>setFirstName(e.target.value)} type="text" placeholder="John"  class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm text-gray-600 ">Last name</label>
-                        <input type="text" asp-for="LastName" placeholder="Snow" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input onChange={(e)=>setLastName(e.target.value)} type="text"  placeholder="Snow" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm text-gray-600">Phone number</label>
-                        <input type="text" asp-for="Phone" placeholder="XXX-XX-XXXX-XXX" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input onChange={(e)=>setPhone(e.target.value)} type="text"  placeholder="XXX-XX-XXXX-XXX" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm text-gray-600 ">Email address</label>
-                        <input type="email" asp-for='Email' placeholder="johnsnow@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input onChange={(e)=>setEmail(e.target.value)} type="email" aplaceholder="johnsnow@example.com" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md focus:border-blue-400  focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                     <div>
                         <label class="block mb-2 text-sm text-gray-600">Password</label>
-                        <input  asp-for="Password" type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
+                        <input  onChange={(e)=>setPassword(e.target.value)}  type="password" placeholder="Enter your password" class="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-md  focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40" />
                     </div>
 
                         <div class="flex items-center justify-center w-full">
@@ -53,11 +92,11 @@ function SignUp() {
                                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload</span> or drag and drop</p>
                                 <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
                             </div>
-                            <input id="dropzone-file" type="file" class="hidden" />
+                            <input onChange={(e)=>setpicture(e.target.files[0])} id="dropzone-file" type="file" class="hidden" />
         </label>
 </div> 
 
-                    <button class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                    <button type='submit' onClick={handleSubmit} class="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                         <span>Sign Up </span>
 
                         <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 rtl:-scale-x-100" viewBox="0 0 20 20" fill="currentColor">

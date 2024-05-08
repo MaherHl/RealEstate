@@ -19,12 +19,36 @@ namespace RealEstate.Services
             _DbContext = DbContext;
         }
 
-        public async Task<Facility> AddFacility(Facility facility)
+        public async Task<Facility> AddFacility(Facility facility , int id)
         {
-            if (facility == null) { throw new ArgumentNullException(nameof(facility)); }
-            var newFacility = await _DbContext.Facilities.AddAsync(facility);
-            await _DbContext.SaveChangesAsync();
-            return newFacility.Entity;
+            if (id != null)
+
+            {
+                if (facility == null) { throw new ArgumentNullException(nameof(facility)); }
+                facility.AgentId = id;
+                if (facility.PictureFile != null && facility.PictureFile.Length > 0)
+                {
+                    var uploadsFolder = Path.Combine("wwwroot", "Facilities");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+                    var uniqueFileName = Guid.NewGuid().ToString() + "_" + facility.PictureFile.FileName;
+                    var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await facility.PictureFile.CopyToAsync(stream);
+                    }
+
+                    facility.ProfileImagePath = "/Facilities/" + uniqueFileName; // Save the path to the database
+                }
+                var newFacility = await _DbContext.Facilities.AddAsync(facility);
+                await _DbContext.SaveChangesAsync();
+                return newFacility.Entity;
+            }
+            else return null;
+           
 
         }
 
@@ -53,6 +77,16 @@ namespace RealEstate.Services
                  return facility;
             }
 
+        public async Task<List<Facility>> GetAllByCity(string city)
+        {
+
+            var facilities = await _DbContext.Facilities.Where(x => x.City == city).ToListAsync();
+            if (facilities == null)
+            {
+                return null;
+            }
+            return facilities;
+        }
 
         public async Task<List<Facility>> GetAll()
         {

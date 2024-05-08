@@ -16,18 +16,20 @@ namespace RealEstate.Models
         [Required]
         public string LastName { get; set; }
 
-        public byte[]? ProfilePicture { get; set; }
-        [NotMapped]
+        public string? ProfileImagePath { get; set; }
+           [NotMapped]
         public IFormFile? PictureFile { get; set; }
         public string? Email { get; set; }
+        [NotMapped]
+        public string Password { get; set; }
 
         [Required]
         public string Phone { get; set; }
 /*        public string UserId { get; set; }
         [NotMapped]
         public string Password { get; set; }*/
-
-        public List<Facility>? Facilities { get; set; }
+        
+       
         
     }
 }

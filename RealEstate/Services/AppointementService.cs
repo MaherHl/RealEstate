@@ -15,7 +15,7 @@ namespace RealEstate.Services
         }
         public async Task<Appointement> BookATour(Appointement appointement)
         {
-           if (appointement == null) { throw new ArgumentNullException(nameof(appointement)); }
+            if (appointement == null) { throw new ArgumentNullException(nameof(appointement)); }
             var newAppointement = await _DbContext.Appointements.AddAsync(appointement);
             if (newAppointement != null)
             {
@@ -29,32 +29,25 @@ namespace RealEstate.Services
 
         public async Task<List<Appointement>> getAll(int id)
         {
-            var facilty = await _DbContext.Facilities.FindAsync(id);
-            return facilty.Appointements.ToList();
-        }
-
-        public async Task<bool> IsAvailable(int id, DateTime BookingDate)
-        {
-           var facility = await _DbContext.Facilities.FirstOrDefaultAsync(f=>f._id== id);
-            if (facility==null)
+            var app = await _DbContext.Appointements.Where(x=>x.AgentId== id).ToListAsync();
+            if(app==null)
             {
-                throw new ArgumentNullException(nameof(facility));
+                return null;
             }
-            if (facility.Appointements == null || !facility.Appointements.Any())
-            {
-                return true; 
-            }
-            foreach (var appointment in facility.Appointements)
-             {
-                        if (appointment.date == BookingDate)
-                        {
-                        return false; 
-                        }
-
-             }
-            return true;
+            return app;
            
 
         }
+        public async Task<bool> IsAvailable(int id, DateTime date)
+        {
+            var app = await _DbContext.Appointements.FirstOrDefaultAsync(x=>x.FacilityId==id);
+            if(app.date == date)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
     }
 }

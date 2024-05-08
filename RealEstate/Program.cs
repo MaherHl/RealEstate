@@ -31,6 +31,18 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options =>
 })
 .AddEntityFrameworkStores<RealEstateDbContext>()
 .AddDefaultTokenProviders();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowLocalhost",
+        builder =>
+        {
+            builder.WithOrigins("http://localhost:3000") // Update with your frontend URL
+                   .AllowAnyHeader()
+                   .AllowAnyMethod()
+                   .SetIsOriginAllowed(origin => true) // allow any origin
+                   .AllowCredentials();
+        });
+});
 builder.Services.AddScoped<IAgentService, AgentService>();
 builder.Services.AddScoped<IFacilityService, FacilityService>();
 builder.Services.AddScoped<IAppointementService, AppointementService>();
@@ -65,11 +77,17 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
+    
 }
-
+app.UseCors(x => x
+             .AllowAnyMethod()
+             .AllowAnyHeader()
+             .SetIsOriginAllowed(origin => true) // allow any origin
+             .AllowCredentials());
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();
+app.UseStaticFiles();
 
 app.MapControllers();
 

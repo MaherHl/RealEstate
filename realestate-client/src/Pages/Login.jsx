@@ -1,6 +1,43 @@
 import React from 'react'
+import { useState } from 'react'
+import { useNavigate } from 'react-router'
+import axios from 'axios'
+import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { setLogin } from '../state/State'
 
 function Login() {
+    const dispatch = useDispatch()
+  const navgiate = useNavigate(); 
+  const [email , setEmail] = useState('')
+  const [password , setPassword] = useState('')
+  const handleSubmit= async (e)=>{
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append('email', email);
+    formData.append('password', password);
+    const LoggedIn=  await axios.post('https://localhost:7108/api/Agent/Login',formData, {
+    headers :{
+        'Content-Type': 'multipart/form-data'
+    }
+   }
+
+    )
+     console.log(LoggedIn)
+        if(LoggedIn){
+           dispatch(setLogin({
+               user : LoggedIn.data.agent,
+               token : LoggedIn.data.token
+           }))
+           
+           
+           navgiate('/dashboard')
+        }
+        
+
+    
+  }
+
   return (
     <section class="min-h-screen flex items-stretch text-white ">
     <div className="lg:flex w-1/2 hidden bg-white bg-no-repeat bg-cover relative items-center" style={{backgroundImage: `url('https://images.unsplash.com/photo-1540387517454-e881631cf830?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')`}}>
@@ -53,7 +90,7 @@ function Login() {
                       <div class="pb-2 pt-4">
                           <div class="w-100">
                               <div class="relative w-full min-w-[200px] h-10">
-                                  <input  type="Email" class="peer text-black w-full h-full bg-gray-100  font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                                  <input onChange={(e)=>setEmail(e.target.value)} type="Email" class="peer text-black w-full h-full bg-gray-100  font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                                          placeholder=" " /><label class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                                       Email
                                   </label>
@@ -63,7 +100,7 @@ function Login() {
                       <div class="pb-2 pt-4">
                           <div class="w-100">
                               <div class="relative w-full min-w-[200px] h-10">
-                                  <input type="Password"  class="peer text-black w-full h-full bg-gray-100  font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                                  <input type="Password" onChange={(e)=>setPassword(e.target.value)} class="peer text-black w-full h-full bg-gray-100  font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-t-blue-gray-200 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-2.5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
                                          placeholder=" " /><label class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-sm text-[11px] peer-focus:text-[11px] before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900">
                                       Password
                                   </label>
@@ -71,10 +108,10 @@ function Login() {
                           </div>
                       </div>
                       <div class="text-right text-gray-400 hover:underline hover:text-gray-100">
-                          <a href="#">You dont have ann account ?</a>
+                          <Link to='/Signup'>You dont have ann account ?</Link>
                       </div>
                       <div class="px-4 pb-2 pt-4">
-                          <button class="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">sign in</button>
+                          <button type='submit ' onClick={handleSubmit} lass="uppercase block w-full p-4 text-lg rounded-full bg-indigo-500 hover:bg-indigo-600 focus:outline-none">sign in</button>
                       </div>
     
                       <div class="p-4 text-center right-0 left-0 flex justify-center space-x-4 mt-16 lg:hidden ">

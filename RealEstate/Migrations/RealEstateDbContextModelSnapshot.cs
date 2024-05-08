@@ -243,8 +243,8 @@ namespace RealEstate.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<byte[]>("ProfilePicture")
-                        .HasColumnType("varbinary(max)");
+                    b.Property<string>("ProfileImagePath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("_Id");
 
@@ -259,7 +259,10 @@ namespace RealEstate.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
 
-                    b.Property<string>("Clientname")
+                    b.Property<int?>("AgentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ClientName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -270,8 +273,6 @@ namespace RealEstate.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("id");
-
-                    b.HasIndex("FacilityId");
 
                     b.ToTable("Appointements");
                 });
@@ -297,6 +298,9 @@ namespace RealEstate.Migrations
 
                     b.Property<double>("Price")
                         .HasColumnType("float");
+
+                    b.Property<string>("ProfileImagePath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("PropertyType")
                         .HasColumnType("int");
@@ -325,8 +329,6 @@ namespace RealEstate.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("_id");
-
-                    b.HasIndex("AgentId");
 
                     b.ToTable("Facilities");
                 });
@@ -380,38 +382,6 @@ namespace RealEstate.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("RealEstate.Models.Appointement", b =>
-                {
-                    b.HasOne("RealEstate.Models.Facility", "Facility")
-                        .WithMany("Appointements")
-                        .HasForeignKey("FacilityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Facility");
-                });
-
-            modelBuilder.Entity("RealEstate.Models.Facility", b =>
-                {
-                    b.HasOne("RealEstate.Models.Agent", "agent")
-                        .WithMany("Facilities")
-                        .HasForeignKey("AgentId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("agent");
-                });
-
-            modelBuilder.Entity("RealEstate.Models.Agent", b =>
-                {
-                    b.Navigation("Facilities");
-                });
-
-            modelBuilder.Entity("RealEstate.Models.Facility", b =>
-                {
-                    b.Navigation("Appointements");
                 });
 #pragma warning restore 612, 618
         }

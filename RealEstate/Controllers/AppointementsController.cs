@@ -16,7 +16,7 @@ namespace RealEstate.Controllers
             _appointementService = appointementService;
         }
 
-     
+
 
         [HttpGet("/{FacilityId}/getAppointements")]
         [Authorize]
@@ -25,7 +25,7 @@ namespace RealEstate.Controllers
         {
             try
             {
-              var app = await  _appointementService.getAll(FacilityId);
+                var app = await _appointementService.getAll(FacilityId);
                 return Ok(app);
 
             }
@@ -38,21 +38,29 @@ namespace RealEstate.Controllers
 
         [HttpPost("/{FaciltyId}/AddAppointement")]
         [Authorize]
-        public async Task<IActionResult> BookAToor(int FaciltyId, Appointement A, DateTime d)
+        public async Task<IActionResult> BookAToor(int FaciltyId, [FromForm]Appointement A)
         {
-            var isAvailable = await _appointementService.IsAvailable(FaciltyId, d);
-            if (isAvailable == true)
+            var isAvailable = await _appointementService.IsAvailable(A.FacilityId, A.date);
+            if (isAvailable==false) {
+                return Ok("The Day is full");
+            }
+            try
             {
-                var app = await _appointementService.BookATour(A);
-                if (app != null)
-                {
+            var app = await _appointementService.BookATour(A);
+                
                     return Ok(app);
 
-                }
-                else return BadRequest("ERROR WHILE TRYING TO BOOK A DAY ");
+               
 
             }
-            else return BadRequest("day is booked");
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+              
+
+           
+            
 
         }
 

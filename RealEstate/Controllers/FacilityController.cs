@@ -18,13 +18,14 @@ namespace RealEstate.Controllers
             _facilityService = facilityService;
         }
 
-        [HttpPost]
+        [HttpPost("/AddFacility/{userId}")]
 
-        public async Task<IActionResult> PostOffer(Facility f , int userID)
+        public async Task<IActionResult> PostOffer([FromForm]Facility f , int userId)
         {
             try
             {
-               await  _facilityService.AddFacility(f);
+               
+               await  _facilityService.AddFacility(f , userId);
                 return Ok("Facility Added ");
             }
             catch (Exception ex) { 
@@ -48,7 +49,7 @@ namespace RealEstate.Controllers
                 return BadRequest(ex.Message);
             }
         }
-        [HttpGet("/getAll")]
+        [HttpGet("/getAllByOwner/{id}")]
         [Authorize]
         public async Task<IActionResult> getAllByOwner(int id )
         {

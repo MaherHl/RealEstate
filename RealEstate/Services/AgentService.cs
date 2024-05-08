@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.SqlServer.Server;
 using RealEstate.Data;
 using RealEstate.Models;
 using RealEstate.Services.Interfaces;
@@ -33,41 +34,50 @@ namespace RealEstate.Services
 
             var user = new IdentityUser()
             {
-
                 UserName = agent.Email,
                 Email = agent.Email,
-
             };
+
+            if (agent.PictureFile != null && agent.PictureFile.Length > 0)
+            {
+                var uploadsFolder = Path.Combine("wwwroot", "uploads");
+                if (!Directory.Exists(uploadsFolder))
+                {
+                    Directory.CreateDirectory(uploadsFolder);
+                }
+                var uniqueFileName = Guid.NewGuid().ToString() + "_" + agent.PictureFile.FileName;
+                var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await agent.PictureFile.CopyToAsync(stream);
+                }
+
+                agent.ProfileImagePath = "/uploads/" + uniqueFileName; // Save the path to the database
+            }
+
             var isCreated = await _securityService.Register(user, password);
+
             if (isCreated)
             {
-                byte[] profilePictureData = null;
-                if (agent.PictureFile != null && agent.PictureFile.Length > 0)
-                {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        await agent.PictureFile.CopyToAsync(memoryStream);
-                        profilePictureData = memoryStream.ToArray();
-                    }
-                }
+
                 var newAgent = new Agent
                 {
-
                     Firstname = agent.Firstname,
                     LastName = agent.LastName,
                     Phone = agent.Phone,
-
-                    ProfilePicture = profilePictureData,
+                    ProfileImagePath= agent.ProfileImagePath,
                     Email = agent.Email
-
                 };
-                await _realEstateDbContext.Agents.AddAsync(newAgent);
 
+                _realEstateDbContext.Agents.Add(newAgent);
                 await _realEstateDbContext.SaveChangesAsync();
                 return newAgent;
             }
-            return null;
+
+            return null; // User registration failed
         }
+
         public async Task<Agent> SignIn(string email, string password)
         {
                 

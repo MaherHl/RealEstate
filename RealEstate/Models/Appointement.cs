@@ -8,9 +8,9 @@ namespace RealEstate.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id {  get; set; }
-        public Facility  Facility {  get; set; }
-        public string Clientname {  get; set; }
+        public string ClientName {  get; set; }
         public int FacilityId { get; set; }
         public DateTime date { get; set; }
+        public int? AgentId { get; set; }
     }
 }
