@@ -3,9 +3,12 @@ import { useState , useRef} from 'react'
 import Navbar from '../Components/Navbar'
 import Contact from '../Assets/Contact.png'
 import { Datepicker } from 'flowbite-react'
-
+import ap3 from '../Assets/ap3.jpg'
+import ap1 from '../Assets/app1.jpg'
 import { InboxArrowDownIcon, PhoneArrowDownLeftIcon , UserIcon, b} from '@heroicons/react/24/outline'
 import { FaBed,FaBath  ,FaToilet } from 'react-icons/fa6'
+import { Link } from 'react-router-dom'
+
 
 
 function PropertyDetail() {
@@ -18,8 +21,12 @@ function PropertyDetail() {
         <div class="w-full mx-auto px-4 sm:px-6 lg:px-0">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 mx-auto max-md:px-2 ">
                 <div class="img">
-                    <div class="img-box h-100 max-lg:mx-auto ">
-                        <img src="https://pagedone.io/asset/uploads/1700471600.png" alt="Yellow Tropical Printed Shirt image"
+                    <div class="img-box h-200 max-lg:mx-auto ">
+                        <img src={ap3} alt="Yellow Tropical Printed Shirt image"
+                            class="max-lg:mx-auto rounded-6  lg:ml-auto h-full"/>
+                    </div>
+                    <div class="img-box mt-3 h-200 max-lg:mx-auto ">
+                        <img src={ap1} alt="Yellow Tropical Printed Shirt image"
                             class="max-lg:mx-auto rounded-6  lg:ml-auto h-full"/>
                     </div>
                 </div>
@@ -208,7 +215,7 @@ function PropertyDetail() {
                               <div  className='text-center ms-10'> 
                               <div className=' flex '>
                                 <UserIcon className='w-6 mx-2'/>
-                              <p className='text-gray-500 font-bold text-lg'>Agent Name</p> 
+                              <p className='text-gray-500 font-bold text-lg'>klaus mkl</p> 
                               </div>
                               
                               <div className=' flex '>
@@ -222,10 +229,10 @@ function PropertyDetail() {
                               
 
                               </div>
-                              <button
-                                class="group py-4 mt-6  px-5 rounded-full bg-indigo-50 text-indigo-600 font-semibold text-lg w-full flex items-center justify-center gap-2 transition-all duration-500 hover:bg-indigo-100">
+                              <Link
+                               to="/Profile" class="group py-4 mt-6  px-5 rounded-full bg-indigo-50 text-indigo-600 font-semibold text-lg w-full flex items-center justify-center gap-2 transition-all duration-500 hover:bg-indigo-100">
                                
-                                See Profile</button>
+                                See Profile</Link>
                             </div>
                            </div>
 

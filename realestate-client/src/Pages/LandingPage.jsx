@@ -1,9 +1,31 @@
-import React from 'react'
+import React,{useState} from 'react'
 import pic from "../Assets/pic4.jpg"
 import Navbar from '../Components/Navbar'
-
-
+import { useDispatch } from 'react-redux'
+import axios from 'axios'
+import {setFacilities} from '../state/State'
+import { useNavigate } from 'react-router'
+import logo from "../Assets/logo11.jpg"
+import { Link } from 'react-router-dom'
 function LandingPage() {
+    const dispatch = useDispatch() 
+    const navigate = useNavigate()
+const [city , setCity]= useState('')
+const handleSubmit =async  ()=>{
+    var facilities = await  axios.get('https://localhost:7108/GetByCity',{
+        City: city
+    })
+    if(facilities){
+            dispatch(setFacilities({
+                Facilities: facilities.data
+            }))
+        navigate('/Main')
+    }
+    console.log(city);
+
+}
+
+
   return (
     <>
         <Navbar/>
@@ -35,16 +57,16 @@ function LandingPage() {
  
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                            </svg>
+                            </svg> 
 
                         </span>
-                        <input type="text" name="" id="" placeholder="CasaBlanca"
+                        <input onChange={(e)=>setCity(e.target.value)} type="text" name="" id="" placeholder="CasaBlanca"
                                class="w-full py-3 border border-none  outline-none bg-transparent"/>
-                        <button class="flex text-white justify-center items-center w-max min-w-max sm:w-max px-6 h-12 rounded-full outline-none relative overflow-hidden border duration-300 ease-linear
+                        <button type='submit'  class="flex text-white justify-center items-center w-max min-w-max sm:w-max px-6 h-12 rounded-full outline-none relative overflow-hidden border duration-300 ease-linear
                                 after:absolute after:inset-x-0 after:aspect-square after:scale-0 after:opacity-70 after:origin-center after:duration-300 after:ease-linear after:rounded-full after:top-0 after:left-0 after:bg-[#172554] hover:after:opacity-100 hover:after:scale-[2.5] bg-blue-600 border-transparent hover:border-[#172554]">
-                            <span class="hidden sm:flex relative z-[5]">
+                            <Link to="/Main"class="hidden sm:flex relative z-[5]">
                                 Search By city Name
-                            </span>
+                            </Link>
                             <span class="flex sm:hidden relative z-[5]">
                                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
                                      stroke-width="1.5" stroke="currentColor" class="w-5 h-5">

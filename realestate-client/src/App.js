@@ -38,8 +38,10 @@ function App() {
         <Route path="/dashboard" element={<Dashboard/>} />
         <Route path='/addFacility' element={<AddForm/>}/>
         <Route path='/Edit' element={<Edit/>}/>
-
-    
+        <Route path='/Detail' element={<PropertyDetail/>}/>
+        <Route path='/Profile' element={<Profile/>}/>
+        <Route path="/appointment"element={<Appointement/>}/>
+        <Route path="/PropertyDetails"element={<PropertyDetail/>}/>
       </Routes>
    </Router>
       

@@ -4,6 +4,10 @@ import { Fragment, useState } from 'react'
 import { Dialog, Disclosure, Menu, Transition } from '@headlessui/react'
 import { XMarkIcon } from '@heroicons/react/24/outline'
 import { ChevronDownIcon, FunnelIcon, MinusIcon, PlusIcon, Squares2X2Icon } from '@heroicons/react/20/solid'
+import ap1 from '../Assets/app1.jpg'
+import ap2 from '../Assets/app2.jpg'
+import ap3 from '../Assets/ap3.jpg'
+import { Link } from 'react-router-dom'
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -302,12 +306,12 @@ function Main() {
 </form>
 
               <div class="grid gird-cols-3 p-8  sm:grid-cols-1  lg:grid-cols-2 xl:grid-cols-3 gap-4">
-	<div class="relative w-full">
+	<Link to='/PropertyDetails'class="relative w-full">
 		<a href="#" class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
 			<div class="shadow p-4 rounded-lg bg-white">
 				<div class="flex justify-center relative rounded-lg overflow-hidden h-52">
 					<div class="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
-						<div class="absolute inset-0 bg-black opacity-10"></div>
+						<img src={ap1} class=""></img>
 					</div>
 
 					<div class="absolute flex justify-center bottom-0 mb-3">
@@ -395,15 +399,15 @@ function Main() {
 				</div>
 			</div>
 		</a>
-	</div>
+	</Link>
     
 
 	<div class="relative  w-full">
 		<a href="#" class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
 			<div class="shadow p-4 rounded-lg bg-white">
 				<div class="flex justify-center relative rounded-lg overflow-hidden h-52">
-					<div class="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
-						<div class="absolute inset-0 bg-black opacity-10"></div>
+				<div class="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
+						<img src={ap2} class=""></img>
 					</div>
 
 					<div class="absolute flex justify-center bottom-0 mb-3">
@@ -497,8 +501,8 @@ function Main() {
 		<a href="#" class="relative inline-block duration-300 ease-in-out transition-transform transform hover:-translate-y-2 w-full">
 			<div class="shadow p-4 rounded-lg bg-white">
 				<div class="flex justify-center relative rounded-lg overflow-hidden h-52">
-					<div class="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
-						<div class="absolute inset-0 bg-black opacity-10"></div>
+				<div class="transition-transform duration-500 transform ease-in-out hover:scale-110 w-full">
+						<img src={ap3} class=""></img>
 					</div>
 
 					<div class="absolute flex justify-center bottom-0 mb-3">

@@ -80,7 +80,17 @@ namespace RealEstate.Controllers
                 return BadRequest(ex.Message);
             }
         }
+        [HttpGet("/GetByCity")]
+        public async Task<IActionResult> getByCity( string city)
+        {
+            var facilities = await _facilityService.GetAllByCity(city);
+            if(facilities == null)
+            {
+                return BadRequest("nothing was found");
 
+            }
+            return Ok(facilities);
+        }
 
      
     }
